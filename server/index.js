@@ -15,6 +15,15 @@ app.use(cors({origin: 'http://localhost:3000', credentials: true}));
 // Import the database connection pool
 const db = require('./config/db');
 
+// Import authentication routes (register, login)
+const authRoutes = require('./routes/auth_routes');
+
+// Attach authentication routes to the Express app
+// Any route defined in auth_routes.js will now be accessible under the auth prefix
+// Example: router.post('/register') becomes POST /auth/register
+// This is how user input from the frontend reaches the register/login controller functions
+app.use('/auth', authRoutes)
+
 // Confirm API server is running and reachable
 app.get('/', (req, res) => {
     res.json({message: "API running"});
