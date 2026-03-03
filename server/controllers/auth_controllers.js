@@ -75,6 +75,9 @@ module.exports = {
             return res.status(401).json({ error: "Invalid email or password" });
         }
 
+        // Store the user's ID in the session to keep them logged in
+        req.session.userId = user.user_id
+
         // Login successful
         res.json({ success: true, message: "Login successful" });
     }

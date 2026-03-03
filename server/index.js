@@ -1,6 +1,7 @@
 // Load core modules
 const express = require('express');
 const cors = require('cors');
+const session = require('express-session');
 require('dotenv').config()
 
 // Create the Express application
@@ -14,6 +15,17 @@ app.use(cors({origin: 'http://localhost:3000', credentials: true}));
 
 // Import the database connection pool
 const db = require('./config/db');
+
+// Create a session for login persistence
+// Stores a unique session ID in a cookie and keeps userId on the server
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        expires: 600000 // Session expires after 10 minutes of inactivity
+    }
+}));
 
 // Import authentication routes (register, login)
 const authRoutes = require('./routes/auth_routes');
