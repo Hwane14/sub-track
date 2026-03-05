@@ -10,7 +10,7 @@ const router = express.Router();
 
 // Load the authentication controller
 // This controller contains the functions that handle register() and login().
-const authController = require('../controllers/auth_controllers');
+const authController = require('../controllers/auth_controller');
 
 // POST /auth/register
 // Handles user registration requests

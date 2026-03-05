@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS categories (
 CREATE TABLE IF NOT EXISTS subscriptions (
     subscription_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
-    category_id INT NOT NULL,
+    category_id INT NULL,
     name VARCHAR(255) NOT NULL,
     cost DECIMAL (10, 2) NOT NULL,
     renewal_date DATE NOT NULL,

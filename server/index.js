@@ -27,14 +27,16 @@ app.use(session({
     }
 }));
 
-// Import authentication routes (register, login)
+// Import routes
 const authRoutes = require('./routes/auth_routes');
+const subscriptionRoutes = require('./routes/subscription_routes');
 
-// Attach authentication routes to the Express app
-// Any route defined in auth_routes.js will now be accessible under the auth prefix
+// Attach routes to the Express app
+// Any route defined in {type}_routes.js will now be accessible under the specified prefix
 // Example: router.post('/register') becomes POST /auth/register
-// This is how user input from the frontend reaches the register/login controller functions
+// This is how user input from the frontend reaches the controller functions
 app.use('/auth', authRoutes)
+app.use('/subscriptions', subscriptionRoutes);
 
 // Confirm API server is running and reachable
 app.get('/', (req, res) => {
