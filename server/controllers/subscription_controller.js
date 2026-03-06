@@ -48,5 +48,24 @@ module.exports = {
             console.error(err);
             res.status(500).json({ error: "Failed to create subscription" });
         }
+    },
+
+    /**
+     * Get all subscriptions for the logged-in user.
+     * Steps:
+     * 1. Read userId from the session
+     * 2. Fetch all subscriptions belonging to that user
+     * 3. Return them as JSON
+     */
+    getAll: async (req, res) => {
+        const userId = req.session.userId;
+
+        try {
+            const subscriptions = await subscriptionModel.getSubscriptionsByUser(userId);
+            res.json({ success: true, subscriptions });
+        } catch (err) {
+            console.error(err);
+            res.status(500).json({ error: "Failed to fetch subscriptions" });
+        }
     }
 };

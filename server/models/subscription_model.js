@@ -25,5 +25,18 @@ module.exports = {
 
         const [result] = await db.query(sql, params);
         return result.insertId;
+    },
+
+    /**
+     * Returns all subscriptions belonging to a specific user.
+     */
+    getSubscriptionsByUser: async (userId) => {
+        const sql = `
+            SELECT * FROM subscriptions WHERE user_id = ?
+            ORDER BY created_at DESC
+            `;
+
+        const [rows] = await db.query(sql, [userId]);
+        return rows;
     }
-}
+};

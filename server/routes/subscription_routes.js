@@ -7,7 +7,9 @@ const router = express.Router();
 const subscriptionController = require('../controllers/subscription_controller');
 const requireLogin = require('../middleware/auth_middleware');
 
-// POST /subscripitons
+// POST /subscripitons: Add subscription for logged-in user
 router.post('/', requireLogin, subscriptionController.create);
+// GET /subscriptions: Get all subscriptions for logged-in user
+router.get('/', requireLogin, subscriptionController.getAll);
 
 module.exports = router;
