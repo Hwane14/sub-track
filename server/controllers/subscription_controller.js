@@ -18,14 +18,7 @@ module.exports = {
         const userId = req.session.userId;
 
         // Extract subscription details
-        const {
-            name,
-            cost,
-            renewal_date,
-            billing_cycle,
-            category_id,
-            status
-        } = req.body;
+        const { name, cost, renewal_date } = req.body;
 
         // Basic validation for required fields
         if (!name || !cost || !renewal_date) {
@@ -37,10 +30,11 @@ module.exports = {
             const subscriptionId = await subscriptionModel.createSubscription(userId, {
                 name,
                 cost,
-                renewal_date,
-                billing_cycle,
-                category_id,
-                status
+                renewal_date
+                // May add the following at a later stage
+                // billing_cycle,
+                // category_id,
+                // status
             });
 
             res.status(201).json({ success: true, subscriptionId });
