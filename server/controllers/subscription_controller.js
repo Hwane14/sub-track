@@ -61,5 +61,38 @@ module.exports = {
             console.error(err);
             res.status(500).json({ error: "Failed to fetch subscriptions" });
         }
+    },
+
+    /**
+     * Update a subscription for the logged-in user.
+     * Steps:
+     * 1. Extract subscription ID from URL params
+     * 2. Extract userId from session
+     * 3. Extract fields from request body
+     * 4. Pass only provided fields to the model
+     * 5. Return success or failure
+     */
+    update: async (req, res) => {
+        const subscriptionId = req.params.id;
+        const userId = req.session.userId;
+
+        const { name, cost, renewal_date } = req.body;
+
+        try {
+            const updated = await subscriptionModel.updateSubscription(
+                subscriptionId,
+                userId,
+                { name, cost, renewal_date }
+            );
+
+            if (!updated) {
+                return res.status(404).json({ error: "Subscription not found or no changes applied" });
+            }
+
+            res.json({ success: true });
+        } catch (err) {
+            console.error(err);
+            res.status(500).json({ error: "Failed to updated subscription" });
+        }
     }
 };
