@@ -77,5 +77,18 @@ module.exports = {
 
         const [result] = await db.query(sql, params);
         return result.affectedRows > 0;
+    },
+
+    /**
+     * Deletes a subscription if it belongs to the given user.
+     */
+    deleteSubscription: async (subscriptionId, userId) => {
+        const sql = `
+            DELETE FROM subscriptions
+            WHERE subscription_id = ? AND user_id = ?
+            `;
+        
+        const [result] = await db.query(sql, [subscriptionId, userId]);
+        return result.affectedRows > 0;
     }
 };

@@ -94,5 +94,31 @@ module.exports = {
             console.error(err);
             res.status(500).json({ error: "Failed to updated subscription" });
         }
+    },
+
+    /**
+     * Delete a subscription for the logged-in user.
+     * Steps:
+     * 1. Extract subscription ID from URL params
+     * 2. Use session userId to ensure ownership
+     * 3. Attempt deletion via model
+     * 4. Return success or failure
+     */
+    delete: async (req, res) => {
+        const subscriptionId = req.params.id;
+        const userId = req.session.userId;
+
+        try {
+            const deleted = await subscriptionModel.deleteSubscription(subscriptionId, userId);
+
+            if (!deleted) {
+                return res.status(404).json({ error: "Subscription not found or not owned by user" });
+            }
+
+            res.json({ success: true });
+        } catch (err) {
+            console.error(err);
+            res.status(500).json({ error: "Failed to delete subscription" });
+        }
     }
 };

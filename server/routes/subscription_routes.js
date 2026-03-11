@@ -13,5 +13,7 @@ router.post('/', requireLogin, subscriptionController.create);
 router.get('/', requireLogin, subscriptionController.getAll);
 // PUT /subscriptions/:id - Update a subscription
 router.put('/:id', requireLogin, subscriptionController.update);
+// DELETE /subscriptions/:id - Delete a subscription
+router.delete('/:id', requireLogin, subscriptionController.delete);
 
 module.exports = router;
