@@ -1,18 +1,53 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 function Login() {
+    // Tracks inputs
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    // Stores validation error to display to the user
+    const [error, setError] = useState("");
+    // React Router hook for programmatic navigation
+    const navigate = useNavigate();
+
+    function handleSubmit(e) {
+        e.preventDefault(); // Stops the page from refreshing on submission
+
+        if (!email || !password) {
+            setError("Please enter both email and password.");
+            return;
+        }
+
+        // TEMPORARY: mock login
+        navigate("/dashboard");
+    }
+
     return (
         <div style={{ maxWidth: "400px", margin: "80px auto", textAlign: "center" }}>
             <h1>Login</h1>
 
-            <form style={{ display: "flex", flexDirection: "column", gap: "12px", marginTop: "20ps" }}>
+            <form 
+            onSubmit={handleSubmit}
+            style={{ display: "flex", flexDirection: "column", gap: "12px", marginTop: "20px" }}
+            >
+                {/* Only displays error message when error state is not empty */}
+                {error && <p style={{ color: "red" }}>{error}</p>}
+
                 <input
                 type="email"
                 placeholder="Email"
+                value={email}
+                // Updates the email state every time the user types
+                onChange={(e) => setEmail(e.target.value)}
                 style={{ padding: "10px", fontSize: "16px" }}
                 />
 
                 <input
                 type="password"
                 placeholder="Password"
+                value={password}
+                // Updates the password state every time the user types
+                onChange={(e) => setPassword(e.target.value)}                
                 style={{ padding: "10px", fontSize: "16px" }}
                 />
 
