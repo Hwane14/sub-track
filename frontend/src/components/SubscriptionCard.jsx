@@ -1,3 +1,4 @@
+// Reusable UI component for displaying a single subscripiton entry
 function SubscriptionCard({ name, price, renewDate }) {
     return (
         <div style={{ padding: "10px 0", borderBottom: "1px solid #ccc" }}>

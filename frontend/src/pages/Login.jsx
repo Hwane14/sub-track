@@ -33,11 +33,11 @@ function Login() {
                 {/* Only displays error message when error state is not empty */}
                 {error && <p style={{ color: "red" }}>{error}</p>}
 
+                {/* Each field updates its corresponding state on every keystroke */}
                 <input
                 type="email"
                 placeholder="Email"
                 value={email}
-                // Updates the email state every time the user types
                 onChange={(e) => setEmail(e.target.value)}
                 style={{ padding: "10px", fontSize: "16px" }}
                 />
@@ -46,7 +46,6 @@ function Login() {
                 type="password"
                 placeholder="Password"
                 value={password}
-                // Updates the password state every time the user types
                 onChange={(e) => setPassword(e.target.value)}                
                 style={{ padding: "10px", fontSize: "16px" }}
                 />
