@@ -1,3 +1,5 @@
+import SubscriptionCard from "../components/SubscriptionCard";
+
 function Dashboard() {
     return (
         <div style={{ maxWidth: "600px", margin: "40px auto", padding: "20px" }}>
@@ -43,24 +45,9 @@ function Dashboard() {
                 <h3>Subscription List</h3>
 
                 <div style={{ marginTop: "10px"}}>
-                    <div style={{ padding: "10px", borderBottom: "1px solid #ccc" }}>
-                        <strong>Netflix</strong> - £10.99
-                        <div>Renews: 12 Feb</div>
-                    </div>
-                </div>
-
-                <div style={{ marginTop: "10px"}}>
-                    <div style={{ padding: "10px", borderBottom: "1px solid #ccc" }}>
-                        <strong>Spotify</strong> - £5.99
-                        <div>Renews: 20 Feb</div>
-                    </div>
-                </div>
-
-                <div style={{ marginTop: "10px"}}>
-                    <div style={{ padding: "10px", borderBottom: "1px solid #ccc" }}>
-                        <strong>Adobe CC</strong> - £19.99
-                        <div>Renews: 01 March</div>
-                    </div>
+                    <SubscriptionCard name="Netflix" price="10.99" renewDate="12 Feb" />
+                    <SubscriptionCard name="Spotify" price="5.99" renewDate="20 Feb" />
+                    <SubscriptionCard name="Adobe CC" price="19.99" renewDate="01 March" />
                 </div>
             </section>
 
