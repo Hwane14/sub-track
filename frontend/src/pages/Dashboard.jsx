@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import SubscriptionCard from "../components/SubscriptionCard";
 
 function Dashboard() {
+    const navigate = useNavigate(); // enables navigation to other pages
+
     return (
         <div style={{ maxWidth: "600px", margin: "40px auto", padding: "20px" }}>
 
@@ -53,6 +56,7 @@ function Dashboard() {
 
             {/* Add subscription button */}
             <button
+            onClick={() => navigate("/add")} // navigates to Add Subscription page
             style={{
                 marginTop: "30px",
                 width: "100%",
