@@ -1,36 +1,33 @@
 import { useNavigate } from "react-router-dom";
 import SubscriptionCard from "../components/SubscriptionCard";
+// For loading backend data
+import { useEffect, useState } from "react";
+import { getSubscriptions } from "../services/api";
 
 function Dashboard() {
     const navigate = useNavigate(); // enables navigation to other pages
 
-    // Mock subscription data
-    const subscriptions = [
-        {
-            id: 1,
-            name: "Netflix",
-            cost: "10.99",
-            renewalDate: "2026-02-12",
-            category: "entertainment",
-            status: "essential"
-        },
-        {
-            id: 2,
-            name: "Spotify",
-            cost: "5.99",
-            renewalDate: "2026-02-20",
-            category: "entertainment",
-            status: "optional"
-        },
-        {
-            id: 3,
-            name: "Adobe CC",
-            cost: "19.99",
-            renewalDate: "2026-03-01",
-            category: "education",
-            status: "unused"
+    // Local state for subscription data + loading/error handling
+    const [subscriptions, setSubscriptions] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
+
+    // Fetch the logged-in user's subscriptions on the first render
+    // Uses the session cookie (sent automatically via withCredentials) to identify the user
+    useEffect(() => {
+        async function fetchSubscriptions() {
+            try {
+                const res = await getSubscriptions();
+                setSubscriptions(res.data.subscriptions);
+            } catch (err) {
+                setError("Failed to load subscriptions.");
+            } finally {
+                setLoading(false);
+            }
         }
-    ]
+
+        fetchSubscriptions();
+    }, []);
 
     return (
         <div style={{ maxWidth: "600px", margin: "40px auto", padding: "20px" }}>
@@ -80,17 +77,27 @@ function Dashboard() {
             <section style={{ marginTop: "20px" }}>
                 <h3>Subscription List</h3>
 
-                <div style={{ marginTop: "10px"}}>
-                    {subscriptions.map((sub) => (
-                        <SubscriptionCard
-                        key={sub.id}
-                        name={sub.name}
-                        cost={sub.cost}
-                        renewalDate={sub.renewalDate}
-                        onClick={() => navigate(`/edit/${sub.id}`)}
-                        />
-                    ))}
-                </div>
+                {/* 
+                Shows loading message while fetching
+                Shows error message if the request fails
+                Otherwise renders the subscription list
+                */}
+                {loading && <p>Loading subscriptions...</p>}
+                {error && <p style={{ color: "red" }}>{error}</p>}
+
+                {!loading && !error && (
+                    <div style={{ marginTop: "10px"}}>
+                        {subscriptions.map((sub) => (
+                            <SubscriptionCard
+                            key={sub.id}
+                            name={sub.name}
+                            cost={sub.cost}
+                            renewalDate={sub.renewal_date}
+                            onClick={() => navigate(`/edit/${sub.id}`)}
+                            />
+                        ))}
+                    </div>
+                )}
             </section>
 
             {/* Add subscription button */}

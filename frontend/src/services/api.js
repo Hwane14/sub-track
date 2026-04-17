@@ -1,3 +1,4 @@
+// This file connect the ReactJS frontend to the Node Express backend 
 import axios from "axios";
 
 const API = axios.create({
@@ -12,3 +13,6 @@ export const loginUser = (email, password) =>
 export const registerUser = (email, password) =>
     API.post("/auth/register", { email, password });
 */
+
+// Subscriptions
+export const getSubscriptions = () => API.get("/subscriptions");

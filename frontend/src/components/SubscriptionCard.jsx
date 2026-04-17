@@ -1,5 +1,13 @@
 // Reusable UI component for displaying a single subscripiton entry
 function SubscriptionCard({ name, cost, renewalDate, onClick }) {
+
+    // Convert ISO string to readable date
+    const formattedDate = new Date(renewalDate).toLocaleString("en-UK", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric"
+    });
+
     return (
         <div
         onClick={onClick}
@@ -12,7 +20,7 @@ function SubscriptionCard({ name, cost, renewalDate, onClick }) {
         }}
         >
             <strong>{name}</strong> - £{cost}
-            <div>Renews: {renewalDate}</div>
+            <div>Renews: {formattedDate}</div>
         </div>
     );
 }
