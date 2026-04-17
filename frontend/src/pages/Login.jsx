@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { loginUser } from "../services/api";
 
 function Login() {
     // Tracks inputs
@@ -10,7 +11,7 @@ function Login() {
     // React Router hook for programmatic navigation
     const navigate = useNavigate();
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault(); // Stops the page from refreshing on submission
 
         if (!email || !password) {
@@ -18,8 +19,12 @@ function Login() {
             return;
         }
 
-        // TEMPORARY: mock login
-        navigate("/dashboard");
+        try {
+            const res = await loginUser(email, password);
+            navigate("/dashboard");
+        } catch (err) {
+            setError("Invalid email or password")
+        }
     }
 
     return (
