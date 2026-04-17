@@ -11,7 +11,12 @@ function Dashboard() {
             <header style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <h1>Sub-Track</h1>
                 <div style={{ position: "relative" }}>
-                    <span style={{ fontSize: "24px" }}>🔔</span>
+                    <span 
+                    style={{ fontSize: "24px", cursor: "pointer" }}
+                    onClick={() => navigate("/notifications")}
+                    >
+                        🔔
+                        </span>
                     {/* Notification badge */}
                     <span
                     style={{

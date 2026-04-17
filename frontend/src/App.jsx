@@ -3,6 +3,7 @@ import Login from "./pages/Login.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import AddSubscription from "./pages/AddSubscription.jsx"
 import EditSubscription from "./pages/EditSubscription.jsx"
+import Notifications from "./pages/Notifications.jsx"
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/add" element={<AddSubscription />} />
       <Route path="/edit" element={<EditSubscription />} />
+      <Route path="/notifications" element={<Notifications />} />
     </Routes>
   );
 }
