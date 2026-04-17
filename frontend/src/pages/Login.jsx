@@ -64,6 +64,9 @@ function Login() {
                     Login
                 </button>
             </form>
+            <p style={{ marginTop: "10px", color: "#888" }}>
+                Don't have an account? <span style={{ textDecoration: "underline" }}>Sign up</span>
+            </p>
         </div>
     );
 }
