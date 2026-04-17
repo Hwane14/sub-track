@@ -12,7 +12,7 @@ function App() {
       <Route path="/" element={<Login />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/add" element={<AddSubscription />} />
-      <Route path="/edit" element={<EditSubscription />} />
+      <Route path="/edit/:id" element={<EditSubscription />} />
       <Route path="/notifications" element={<Notifications />} />
     </Routes>
   );

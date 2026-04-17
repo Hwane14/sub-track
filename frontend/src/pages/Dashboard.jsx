@@ -4,6 +4,34 @@ import SubscriptionCard from "../components/SubscriptionCard";
 function Dashboard() {
     const navigate = useNavigate(); // enables navigation to other pages
 
+    // Mock subscription data
+    const subscriptions = [
+        {
+            id: 1,
+            name: "Netflix",
+            cost: "10.99",
+            renewalDate: "2026-02-12",
+            category: "entertainment",
+            status: "essential"
+        },
+        {
+            id: 2,
+            name: "Spotify",
+            cost: "5.99",
+            renewalDate: "2026-02-20",
+            category: "entertainment",
+            status: "optional"
+        },
+        {
+            id: 3,
+            name: "Adobe CC",
+            cost: "19.99",
+            renewalDate: "2026-03-01",
+            category: "education",
+            status: "unused"
+        }
+    ]
+
     return (
         <div style={{ maxWidth: "600px", margin: "40px auto", padding: "20px" }}>
 
@@ -53,9 +81,15 @@ function Dashboard() {
                 <h3>Subscription List</h3>
 
                 <div style={{ marginTop: "10px"}}>
-                    <SubscriptionCard name="Netflix" price="10.99" renewDate="12 Feb" />
-                    <SubscriptionCard name="Spotify" price="5.99" renewDate="20 Feb" />
-                    <SubscriptionCard name="Adobe CC" price="19.99" renewDate="01 March" />
+                    {subscriptions.map((sub) => (
+                        <SubscriptionCard
+                        key={sub.id}
+                        name={sub.name}
+                        cost={sub.cost}
+                        renewalDate={sub.renewalDate}
+                        onClick={() => navigate(`/edit/${sub.id}`)}
+                        />
+                    ))}
                 </div>
             </section>
 

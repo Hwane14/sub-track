@@ -1,9 +1,18 @@
 // Reusable UI component for displaying a single subscripiton entry
-function SubscriptionCard({ name, price, renewDate }) {
+function SubscriptionCard({ name, cost, renewalDate, onClick }) {
     return (
-        <div style={{ padding: "10px 0", borderBottom: "1px solid #ccc" }}>
-            <strong>{name}</strong> - £{price}
-            <div>Renews: {renewDate}</div>
+        <div
+        onClick={onClick}
+        style={{ 
+            padding: "10px 0",
+            border: "1px solid #ccc",
+            borderRadius: "8px",
+            cursor: "pointer",
+            background: "white"
+        }}
+        >
+            <strong>{name}</strong> - £{cost}
+            <div>Renews: {renewalDate}</div>
         </div>
     );
 }
