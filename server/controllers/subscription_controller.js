@@ -18,7 +18,7 @@ module.exports = {
         const userId = req.session.userId;
 
         // Extract subscription details
-        const { name, cost, renewal_date } = req.body;
+        let { name, cost, renewal_date } = req.body;
 
         // Basic validation for required fields
         if (!name || !cost || !renewal_date) {
@@ -56,11 +56,6 @@ module.exports = {
 
         try {
             const subscriptions = await subscriptionModel.getSubscriptionsByUser(userId);
-
-            // Change each subscription's date to YYYY-MM-DD
-            subscriptions.forEach(sub => {
-                sub.renewal_date = sub.renewal_date.toISOString().split("T")[0];
-            });
             
             res.json({ success: true, subscriptions });
         } catch (err) {

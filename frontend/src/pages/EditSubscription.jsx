@@ -7,7 +7,6 @@ function EditSubscription() {
     // Get subscription object from dashboard page via React Router state
     const location = useLocation();
     const subscription = location.state;
-    console.log(subscription);
 
     // Handles updating an existing subscription (placeholder until backend integration)
     function handleUpdate(data) {

@@ -14,7 +14,6 @@ function SubscriptionForm({
     const [renewal_date, setRenewalDate] = useState(initialValues.renewalDate || "");
     const [category, setCategory] = useState(initialValues.category || "");
     const [status, setStatus] = useState(initialValues.status || "");
-    console.log(initialValues);
 
     function handleSubmit(e) {
         e.preventDefault();
