@@ -11,7 +11,7 @@ function SubscriptionForm({
     // Local form state (pre-filled when editing)
     const [name, setName] = useState(initialValues.name || "");
     const [cost, setCost] = useState(initialValues.cost || "");
-    const [renewalDate, setRenewalDate] = useState(initialValues.renewalDate || "");
+    const [renewal_date, setRenewalDate] = useState(initialValues.renewal_date || "");
     const [category, setCategory] = useState(initialValues.category || "");
     const [status, setStatus] = useState(initialValues.status || "");
 
@@ -22,9 +22,7 @@ function SubscriptionForm({
         onSubmit({
             name,
             cost,
-            renewalDate,
-            category,
-            status
+            renewal_date
         });
     }
 
@@ -61,7 +59,7 @@ function SubscriptionForm({
                 <div style={{ display: "flex", gap: "8px" }}>
                     <input
                     type="date"
-                    value={renewalDate}
+                    value={renewal_date}
                     onChange={(e) => setRenewalDate(e.target.value)}
                     style={{ width: "60px", padding: "10px" }}
                     />

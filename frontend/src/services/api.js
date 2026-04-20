@@ -15,4 +15,7 @@ export const registerUser = (email, password) =>
 */
 
 // Subscriptions
-export const getSubscriptions = () => API.get("/subscriptions");
+export const getSubscriptions = () => 
+    API.get("/subscriptions"); // get subscriptions for logged-in user
+export const createSubscription = (data) => 
+    API.post("/subscriptions", data);
