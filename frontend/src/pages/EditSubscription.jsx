@@ -1,17 +1,13 @@
 import SubscriptionForm from "../components/SubscriptionForm";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function EditSubscription() {
     const navigate = useNavigate();
 
-    // Example existing subscription (will come from backend later)
-    const subscription = {
-        name: "Netflix",
-        cost: "10.99",
-        renewDate: "2026-02-12",
-        category: "entertainment",
-        status: "essential"
-    };
+    // Get subscription object from dashboard page via React Router state
+    const location = useLocation();
+    const subscription = location.state;
+    console.log(subscription);
 
     // Handles updating an existing subscription (placeholder until backend integration)
     function handleUpdate(data) {
@@ -29,8 +25,15 @@ function EditSubscription() {
         <div style={{ maxWidth: "500px", margin: "40px auto", padding: "20px" }}>
             <h1>Edit Subscription</h1>
 
+            {/* Pre-fill form with selected subscription's details */}
             <SubscriptionForm
-            initialValues={subscription}
+            initialValues={{
+                name: subscription.name,
+                cost: subscription.cost,
+                renewalDate: subscription.renewal_date,
+                category: subscription.category,
+                status: subscription.status
+            }}
             submitLabel="Save Changes"
             showDelete={true}
             onSubmit={handleUpdate}

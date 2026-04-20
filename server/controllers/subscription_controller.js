@@ -56,6 +56,12 @@ module.exports = {
 
         try {
             const subscriptions = await subscriptionModel.getSubscriptionsByUser(userId);
+
+            // Change each subscription's date to YYYY-MM-DD
+            subscriptions.forEach(sub => {
+                sub.renewal_date = sub.renewal_date.toISOString().split("T")[0];
+            });
+            
             res.json({ success: true, subscriptions });
         } catch (err) {
             console.error(err);

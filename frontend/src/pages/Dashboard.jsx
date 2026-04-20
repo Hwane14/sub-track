@@ -78,9 +78,10 @@ function Dashboard() {
                 <h3>Subscription List</h3>
 
                 {/* 
-                Shows loading message while fetching
-                Shows error message if the request fails
-                Otherwise renders the subscription list
+                - Shows loading message while fetching
+                - Shows error message if the request fails
+                - Otherwise renders the subscription list
+                - Passes subscription object to edit page via React Router state
                 */}
                 {loading && <p>Loading subscriptions...</p>}
                 {error && <p style={{ color: "red" }}>{error}</p>}
@@ -93,7 +94,7 @@ function Dashboard() {
                             name={sub.name}
                             cost={sub.cost}
                             renewalDate={sub.renewal_date}
-                            onClick={() => navigate(`/edit/${sub.id}`)}
+                            onClick={() => navigate(`/edit/${sub.id}`, { state: sub })}
                             />
                         ))}
                     </div>

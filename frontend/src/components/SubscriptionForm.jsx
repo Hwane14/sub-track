@@ -11,9 +11,10 @@ function SubscriptionForm({
     // Local form state (pre-filled when editing)
     const [name, setName] = useState(initialValues.name || "");
     const [cost, setCost] = useState(initialValues.cost || "");
-    const [renewal_date, setRenewalDate] = useState(initialValues.renewal_date || "");
+    const [renewal_date, setRenewalDate] = useState(initialValues.renewalDate || "");
     const [category, setCategory] = useState(initialValues.category || "");
     const [status, setStatus] = useState(initialValues.status || "");
+    console.log(initialValues);
 
     function handleSubmit(e) {
         e.preventDefault();
