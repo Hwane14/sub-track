@@ -1,5 +1,6 @@
 import SubscriptionForm from "../components/SubscriptionForm";
 import { useNavigate, useLocation } from "react-router-dom";
+import { updateSubscription } from "../services/api";
 
 function EditSubscription() {
     const navigate = useNavigate();
@@ -8,11 +9,16 @@ function EditSubscription() {
     const location = useLocation();
     const subscription = location.state;
 
-    // Handles updating an existing subscription (placeholder until backend integration)
-    function handleUpdate(data) {
-        console.log("Updating subscription:", data);
-        navigate("/dashboard");
-    }
+    // Send updated subscription fields to backend and save changes
+    async function handleUpdate(values) {
+        try {
+            await updateSubscription(subscription.subscription_id, values)
+
+            navigate("/dashboard");
+        } catch(err) {
+            console.error(err);
+        }
+    };
 
     // Deletes the subscription (placeholder until backend integration)
     function handleDelete() {

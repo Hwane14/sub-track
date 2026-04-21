@@ -18,4 +18,6 @@ export const registerUser = (email, password) =>
 export const getSubscriptions = () => 
     API.get("/subscriptions"); // get subscriptions for logged-in user
 export const createSubscription = (data) => 
-    API.post("/subscriptions", data);
+    API.post("/subscriptions", data); // add subscription for logged-in user
+export const updateSubscription = (id, data) =>
+    API.put(`/subscriptions/${id}`, data); // update subscription for logged-in user
