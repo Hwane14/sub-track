@@ -1,6 +1,6 @@
 import SubscriptionForm from "../components/SubscriptionForm";
 import { useNavigate, useLocation } from "react-router-dom";
-import { updateSubscription } from "../services/api";
+import { updateSubscription, deleteSubscription } from "../services/api";
 
 function EditSubscription() {
     const navigate = useNavigate();
@@ -12,18 +12,21 @@ function EditSubscription() {
     // Send updated subscription fields to backend and save changes
     async function handleUpdate(values) {
         try {
-            await updateSubscription(subscription.subscription_id, values)
-
+            await updateSubscription(subscription.subscription_id, values);
             navigate("/dashboard");
-        } catch(err) {
+        } catch (err) {
             console.error(err);
         }
     };
 
-    // Deletes the subscription (placeholder until backend integration)
-    function handleDelete() {
-        console.log("Deleting subscription:");
-        navigate("/dashboard");
+    // Delete the subscription from backend and return to dashboard
+    async function handleDelete() {
+        try {
+            await deleteSubscription(subscription.subscription_id);
+            navigate("/dashboard");
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     return (

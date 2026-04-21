@@ -6,7 +6,7 @@ const API = axios.create({
     withCredentials: true // allows cookies to be sent so session-based login works
 });
 
-// AUTH
+// Authentication API endpoints
 export const loginUser = (email, password) =>
     API.post("/auth/login", { email, password });
 /* for later
@@ -14,10 +14,12 @@ export const registerUser = (email, password) =>
     API.post("/auth/register", { email, password });
 */
 
-// Subscriptions
+// Subscription API endpoints
 export const getSubscriptions = () => 
     API.get("/subscriptions"); // get subscriptions for logged-in user
 export const createSubscription = (data) => 
     API.post("/subscriptions", data); // add subscription for logged-in user
 export const updateSubscription = (id, data) =>
     API.put(`/subscriptions/${id}`, data); // update subscription for logged-in user
+export const deleteSubscription = (id) =>
+    API.delete(`/subscriptions/${id}`); // delete subscription
