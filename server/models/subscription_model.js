@@ -11,16 +11,17 @@ module.exports = {
     createSubscription: async (userId, data) => {
         const sql = `
             INSERT INTO subscriptions
-            (user_id, category_id, name, cost, renewal_date)
-            VALUES (?, ?, ?, ?, ?)
+            (user_id, name, cost, renewal_date, category, status)
+            VALUES (?, ?, ?, ?, ?, ?)
             `;
 
         const params = [
             userId,
-            data.category_id || null, // nullable
             data.name,
             data.cost,
-            data.renewal_date
+            data.renewal_date,
+            data.category,
+            data.status
         ];
 
         const [result] = await db.query(sql, params);
@@ -62,6 +63,15 @@ module.exports = {
         if (data.renewal_date) {
             fields.push("renewal_date = ?");
             params.push(data.renewal_date);
+        }
+        
+        if (data.category) {
+            fields.push("category = ?");
+            params.push(data.category);
+        }
+        if (data.status) {
+            fields.push("status = ?");
+            params.push(data.status);
         }
 
         // If no fields provided, do nothing

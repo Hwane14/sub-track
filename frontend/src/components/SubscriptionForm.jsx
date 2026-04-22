@@ -22,7 +22,9 @@ function SubscriptionForm({
         onSubmit({
             name,
             cost,
-            renewal_date
+            renewal_date,
+            category,
+            status
         });
     }
 
@@ -75,9 +77,14 @@ function SubscriptionForm({
                 style={{ width: "100%", padding: "10px" }}
                 >
                     <option value="">Select category</option>
-                    <option value="entertainment">Entertainment</option>
-                    <option value="education">Education</option>
-                    <option value="other">Other</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Education">Education</option>
+                    <option value="Utilities">Utilities</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Health">Health</option>
+                    <option value="Gaming">Gaming</option>
+                    <option value="Cloud Storage">Cloud Storage</option>
+                    <option value="Other">Other</option>
                 </select>
             </div>
 

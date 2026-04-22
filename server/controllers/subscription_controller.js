@@ -18,10 +18,10 @@ module.exports = {
         const userId = req.session.userId;
 
         // Extract subscription details
-        let { name, cost, renewal_date } = req.body;
+        let { name, cost, renewal_date, category, status } = req.body;
 
         // Basic validation for required fields
-        if (!name || !cost || !renewal_date) {
+        if (!name || !cost || !renewal_date || !category) {
             return res.status(400).json({ error: "Missing required fields" });
         }
 
@@ -30,11 +30,9 @@ module.exports = {
             const subscriptionId = await subscriptionModel.createSubscription(userId, {
                 name,
                 cost,
-                renewal_date
-                // May add the following at a later stage
-                // billing_cycle,
-                // category_id,
-                // status
+                renewal_date,
+                category,
+                status
             });
 
             res.status(201).json({ success: true, subscriptionId });
@@ -77,13 +75,13 @@ module.exports = {
         const subscriptionId = req.params.id;
         const userId = req.session.userId;
 
-        const { name, cost, renewal_date } = req.body;
+        const { name, cost, renewal_date, category, status } = req.body;
 
         try {
             const updated = await subscriptionModel.updateSubscription(
                 subscriptionId,
                 userId,
-                { name, cost, renewal_date }
+                { name, cost, renewal_date, category, status }
             );
 
             if (!updated) {

@@ -10,12 +10,14 @@ function AddSubscription() {
 
     // Handle form submission: send new subscription to backend, then return to
     // dashboard on success.
-    async function handleCreate({name, cost, renewal_date}) {
+    async function handleCreate({name, cost, renewal_date, category, status}) {
         try {
             await createSubscription({
                 name,
                 cost,
-                renewal_date
+                renewal_date,
+                category,
+                status
             });
             navigate("/dashboard");
         } catch (err) {
