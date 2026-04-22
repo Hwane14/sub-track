@@ -29,6 +29,11 @@ function Dashboard() {
         fetchSubscriptions();
     }, []);
 
+    // Sum all subscription costs (monthly outgoing)
+    const monthlyTotal = subscriptions.reduce((sum, sub) => {
+        return sum + Number(sub.cost);
+    }, 0)
+
     return (
         <div style={{ maxWidth: "600px", margin: "40px auto", padding: "20px" }}>
 
@@ -42,21 +47,6 @@ function Dashboard() {
                     >
                         🔔
                         </span>
-                    {/* Notification badge */}
-                    <span
-                    style={{
-                        position: "absolute",
-                        top: "-5px",
-                        right: "-10px",
-                        background: "red",
-                        color: "white",
-                        borderRadius: "50%",
-                        padding: "2px 6px",
-                        fontSize: "12px"
-                    }}
-                    >
-                        3
-                    </span>
                 </div>
             </header>
 
@@ -70,7 +60,7 @@ function Dashboard() {
 
             {/* Montly summary */}
             <section style={{ marginTop: "30px" }}>
-                <h2>Montly Summary: £XX / month</h2>
+                <h2>Montly Summary: £{monthlyTotal.toFixed(2)} / month</h2>
             </section>
 
             {/* Subscription List */}
