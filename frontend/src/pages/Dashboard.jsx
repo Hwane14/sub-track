@@ -51,7 +51,12 @@ function Dashboard() {
             <div style={{ display: "flex", gap: "10px", marginTop: "20px" }}>
                 <button>All</button>
                 <button>Entertainment</button>
-                <button>Edu</button>
+                <button>Education</button>
+                <button>Utilities</button>
+                <button>Finance</button>
+                <button>Health</button>
+                <button>Gaming</button>
+                <button>Cloud Storage</button>
                 <button>Other</button>
             </div>
 

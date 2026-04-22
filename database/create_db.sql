@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS subscriptions (
         'finance',
         'health',
         'gaming',
-        'cloud Storage',
+        'cloud storage',
         'other'
     ) NOT NULL,
     billing_cycle ENUM('monthly', 'yearly') NOT NULL DEFAULT 'monthly',
