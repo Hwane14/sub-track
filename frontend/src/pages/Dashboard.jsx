@@ -7,9 +7,8 @@ import { getSubscriptions } from "../services/api";
 function Dashboard() {
     const navigate = useNavigate(); // enables navigation to other pages
 
-    // Local state for subscription data + loading/error handling
+    // Local state for subscription data + error handling
     const [subscriptions, setSubscriptions] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
     // Fetch the logged-in user's subscriptions on the first render
@@ -21,8 +20,6 @@ function Dashboard() {
                 setSubscriptions(res.data.subscriptions);
             } catch (err) {
                 setError("Failed to load subscriptions.");
-            } finally {
-                setLoading(false);
             }
         }
 
@@ -68,15 +65,13 @@ function Dashboard() {
                 <h3>Subscription List</h3>
 
                 {/* 
-                - Shows loading message while fetching
                 - Shows error message if the request fails
                 - Otherwise renders the subscription list
                 - Passes subscription object to edit page via React Router state
                 */}
-                {loading && <p>Loading subscriptions...</p>}
                 {error && <p style={{ color: "red" }}>{error}</p>}
 
-                {!loading && !error && (
+                {!error && (
                     <div style={{ marginTop: "10px"}}>
                         {subscriptions.map((sub) => (
                             <SubscriptionCard
