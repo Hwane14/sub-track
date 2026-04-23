@@ -4,6 +4,9 @@ const cors = require('cors');
 const session = require('express-session');
 require('dotenv').config()
 
+// Load daily renewal-date cron job
+const { startRenewalCron } = require('./cron/renewal_updater');
+
 // Create the Express application
 const app = express();
 
@@ -40,6 +43,9 @@ const subscriptionRoutes = require('./routes/subscription_routes');
 // This is how user input from the frontend reaches the controller functions
 app.use('/auth', authRoutes)
 app.use('/subscriptions', subscriptionRoutes);
+
+// Start cron job
+startRenewalCron();
 
 const PORT = process.env.PORT || 8000;
 // Start the server
