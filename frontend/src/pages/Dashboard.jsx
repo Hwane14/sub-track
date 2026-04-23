@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import SubscriptionCard from "../components/SubscriptionCard";
+import CategoryButton from "../components/CategoryButton";
 // For loading backend data
 import { useEffect, useState } from "react";
 import { getSubscriptions } from "../services/api";
@@ -7,7 +8,7 @@ import { getSubscriptions } from "../services/api";
 function Dashboard() {
     const navigate = useNavigate(); // enables navigation to other pages
 
-    // Local state for subscription data + error handling
+    // Local state for subscription data + active category + error handling
     const [subscriptions, setSubscriptions] = useState([]);
     const [activeCategory, setActiveCategory] = useState("all");
     const [error, setError] = useState("");
@@ -26,6 +27,19 @@ function Dashboard() {
 
         fetchSubscriptions();
     }, []);
+
+    // Categories
+    const categories = [
+        {label: "All", value: "all"},
+        {label: "Entertainment", value: "entertainment"},
+        {label: "Education", value: "education"},
+        {label: "Utilities", value: "utilities"},
+        {label: "Finance", value: "finance"},
+        {label: "Health", value: "health"},
+        {label: "Gaming", value: "gaming"},
+        {label: "Cloud Storage", value: "cloud storage"},
+        {label: "Other", value: "other"},
+    ]
 
     // Category filtering
     const handleCategoryFilter = (category) => {
@@ -58,15 +72,15 @@ function Dashboard() {
 
             {/* Category filter buttons */}
             <div style={{ display: "flex", gap: "10px", marginTop: "20px" }}>
-                <button onClick={() => handleCategoryFilter("all")}>All</button>
-                <button onClick={() => handleCategoryFilter("entertainment")}>Entertainment</button>
-                <button onClick={() => handleCategoryFilter("education")}>Education</button>
-                <button onClick={() => handleCategoryFilter("utilities")}>Utilities</button>
-                <button onClick={() => handleCategoryFilter("finance")}>Finance</button>
-                <button onClick={() => handleCategoryFilter("health")}>Health</button>
-                <button onClick={() => handleCategoryFilter("gaming")}>Gaming</button>
-                <button onClick={() => handleCategoryFilter("cloud storage")}>Cloud Storage</button>
-                <button onClick={() => handleCategoryFilter("other")}>Other</button>
+                {categories.map(cat => (
+                    <CategoryButton
+                    key={cat.value}
+                    label={cat.label}
+                    value={cat.value}
+                    activeCategory={activeCategory}
+                    onClick={handleCategoryFilter}
+                    />
+                ))}
             </div>
 
             {/* Montly summary */}
