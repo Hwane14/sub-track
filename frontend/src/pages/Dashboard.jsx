@@ -9,6 +9,7 @@ function Dashboard() {
 
     // Local state for subscription data + error handling
     const [subscriptions, setSubscriptions] = useState([]);
+    const [activeCategory, setActiveCategory] = useState("all");
     const [error, setError] = useState("");
 
     // Fetch the logged-in user's subscriptions on the first render
@@ -26,8 +27,16 @@ function Dashboard() {
         fetchSubscriptions();
     }, []);
 
+    // Category filtering
+    const handleCategoryFilter = (category) => {
+        setActiveCategory(category);
+    };
+    const filteredSubscriptions = activeCategory === "all"
+        ? subscriptions
+        : subscriptions.filter(sub => sub.category === activeCategory);
+
     // Sum all subscription costs (monthly outgoing)
-    const monthlyTotal = subscriptions.reduce((sum, sub) => {
+    const monthlyTotal = filteredSubscriptions.reduce((sum, sub) => {
         return sum + Number(sub.cost);
     }, 0)
 
@@ -49,15 +58,15 @@ function Dashboard() {
 
             {/* Category filter buttons */}
             <div style={{ display: "flex", gap: "10px", marginTop: "20px" }}>
-                <button>All</button>
-                <button>Entertainment</button>
-                <button>Education</button>
-                <button>Utilities</button>
-                <button>Finance</button>
-                <button>Health</button>
-                <button>Gaming</button>
-                <button>Cloud Storage</button>
-                <button>Other</button>
+                <button onClick={() => handleCategoryFilter("all")}>All</button>
+                <button onClick={() => handleCategoryFilter("entertainment")}>Entertainment</button>
+                <button onClick={() => handleCategoryFilter("education")}>Education</button>
+                <button onClick={() => handleCategoryFilter("utilities")}>Utilities</button>
+                <button onClick={() => handleCategoryFilter("finance")}>Finance</button>
+                <button onClick={() => handleCategoryFilter("health")}>Health</button>
+                <button onClick={() => handleCategoryFilter("gaming")}>Gaming</button>
+                <button onClick={() => handleCategoryFilter("cloud storage")}>Cloud Storage</button>
+                <button onClick={() => handleCategoryFilter("other")}>Other</button>
             </div>
 
             {/* Montly summary */}
@@ -78,7 +87,7 @@ function Dashboard() {
 
                 {!error && (
                     <div style={{ marginTop: "10px"}}>
-                        {subscriptions.map((sub) => (
+                        {filteredSubscriptions.map((sub) => (
                             <SubscriptionCard
                             key={sub.id}
                             name={sub.name}
