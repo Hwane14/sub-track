@@ -71,7 +71,7 @@ function Dashboard() {
 
             {/* Montly summary */}
             <section style={{ marginTop: "30px" }}>
-                <h2>Montly Summary: £{monthlyTotal.toFixed(2)} / month</h2>
+                <h2>Monthly Summary: £{monthlyTotal.toFixed(2)} / month</h2>
             </section>
 
             {/* Subscription List */}

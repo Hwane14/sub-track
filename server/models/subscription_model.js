@@ -29,6 +29,15 @@ module.exports = {
     },
 
     /**
+     * Returns all subscriptions stored in the subscriptions table.
+     */
+    getAllSubscriptions: async () => {
+        const sql = `SELECT * FROM subscriptions`;
+        const [rows] = await db.query(sql);
+        return rows;
+    },
+
+    /**
      * Returns all subscriptions belonging to a specific user.
      */
     getSubscriptionsByUser: async (userId) => {
@@ -86,6 +95,19 @@ module.exports = {
         params.push(subscriptionId, userId);
 
         const [result] = await db.query(sql, params);
+        return result.affectedRows > 0;
+    },
+
+    /**
+     * Updates the renewal date for a particular subscription
+     */
+    updateSubscriptionDate: async (subscriptionId, newDate) => {
+        const sql = `
+            UPDATE subscriptions
+            SET renewal_date = ?
+            WHERE subscription_id = ?
+            `;
+        const [result] = await db.query(sql, [newDate, subscriptionId]);
         return result.affectedRows > 0;
     },
 

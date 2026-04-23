@@ -27,7 +27,6 @@ CREATE TABLE IF NOT EXISTS subscriptions (
         'cloud storage',
         'other'
     ) NOT NULL,
-    billing_cycle ENUM('monthly', 'yearly') NOT NULL DEFAULT 'monthly',
     status ENUM('essential', 'optional', 'unused') NOT NULL DEFAULT 'optional',
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(user_id)
