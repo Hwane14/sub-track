@@ -9,10 +9,9 @@ const API = axios.create({
 // Authentication API endpoints
 export const loginUser = (email, password) =>
     API.post("/auth/login", { email, password });
-/* for later
 export const registerUser = (email, password) =>
     API.post("/auth/register", { email, password });
-*/
+
 
 // Subscription API endpoints
 export const getSubscriptions = () => 

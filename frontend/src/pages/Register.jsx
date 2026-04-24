@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginUser } from "../services/api";
+import { registerUser } from "../services/api";
 import AuthForm from "../components/AuthForm";
 
-function Login() {
+function Register() {
     // Tracks inputs
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -21,28 +21,29 @@ function Login() {
         }
 
         try {
-            const res = await loginUser(email, password);
-            navigate("/dashboard");
+            const res = await registerUser(email, password);
+            navigate("/");
         } catch (err) {
-            setError("Invalid email or password")
+            // Show backend error message if available
+            setError(err.response?.data?.error || "Registration failed.")
         }
     }
 
     return (
         <AuthForm
-        title="Login"
+        title="Create Account"
         email={email}
         password={password}
         setEmail={setEmail}
         setPassword={setPassword}
         error={error}
         onSubmit={handleSubmit}
-        buttonText="Login"
-        bottomText="Don't have an account?"
-        bottomLinkText="Sign up"
-        onBottomLinkClick={() => navigate("/register")}
+        buttonText="Register"
+        bottomText="Already have an account?"
+        bottomLinkText="Log in"
+        onBottomLinkClick={() => navigate("/")}
         />
     );
 }
 
-export default Login;
+export default Register;
