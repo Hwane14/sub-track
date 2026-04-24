@@ -66,7 +66,24 @@ function Dashboard() {
                     onClick={() => navigate("/notifications")}
                     >
                         🔔
-                        </span>
+                    </span>
+
+                    {/* Logout Button */}
+                    <button
+                    onClick={() => navigate("/")}
+                    style={{
+                        marginLeft: "15px",
+                        padding: "10px 16px",
+                        background: "#dc3545",
+                        color: "white",
+                        border: "none",
+                        borderRadius: "4px",
+                        cursor: "pointer",
+                        fontSize: "14px"
+                    }}
+                    >
+                        Logout
+                    </button>
                 </div>
             </header>
 
