@@ -60,7 +60,7 @@ function Dashboard() {
             {/* Header with app name + notifications */}
             <header style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <h1>Sub-Track</h1>
-                <div style={{ position: "relative" }}>
+                <div style={{ display: "flex", alignItems: "center", gap:"15px" }}>
                     <span 
                     style={{ fontSize: "24px", cursor: "pointer" }}
                     onClick={() => navigate("/notifications")}
@@ -100,7 +100,7 @@ function Dashboard() {
                 ))}
             </div>
 
-            {/* Montly summary */}
+            {/* Monthly summary */}
             <section style={{ marginTop: "30px" }}>
                 <h2>Monthly Summary: £{monthlyTotal.toFixed(2)} / month</h2>
             </section>

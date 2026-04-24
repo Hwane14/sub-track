@@ -14,7 +14,7 @@ module.exports = {
     },
 
     // Validate password strength.
-    // Simple rule currently: at least 8 characters
+    // Simple rule: at least 8 characters
     validatePassword(password) {
         return password.length >= 8;
     }

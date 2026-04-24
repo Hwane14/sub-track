@@ -1,4 +1,4 @@
-// Reuseable button for category filtering
+// Reusable button for category filtering
 // Highlights itself when its category matches the activeCategory
 function CategoryButton({ label, value, activeCategory, onClick }) {
     const isActive = activeCategory === value;

@@ -1,4 +1,4 @@
-// Reusable UI component for displaying a single subscripiton entry
+// Reusable UI component for displaying a single subscription entry
 function SubscriptionCard({ name, cost, renewalDate, onClick }) {
 
     // Convert ISO string to readable date

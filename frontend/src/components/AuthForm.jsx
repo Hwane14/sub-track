@@ -1,3 +1,4 @@
+// Reusable authentication form used by both Login and Register pages
 function AuthForm({
     title,
     email,
@@ -29,6 +30,7 @@ function AuthForm({
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 style={{ padding: "10px", fontSize: "16px" }}
+                required
                 />
 
                 <input
@@ -37,6 +39,7 @@ function AuthForm({
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}                
                 style={{ padding: "10px", fontSize: "16px" }}
+                required
                 />
 
                 <button

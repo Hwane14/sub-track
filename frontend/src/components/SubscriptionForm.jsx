@@ -64,7 +64,7 @@ function SubscriptionForm({
                     min={new Date().toISOString().split("T")[0]}
                     value={renewal_date}
                     onChange={(e) => setRenewalDate(e.target.value)}
-                    style={{ width: "60px", padding: "10px" }}
+                    style={{ width: "75px", padding: "10px" }}
                     />
                 </div>
             </div>

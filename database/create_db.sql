@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS subscriptions (
 );
 
 -- Create application user
--- Anyone running this project may keep the password ('CannotGuessThis')
+-- Anyone running this project can keep the password ('CannotGuessThis')
 -- as is, or change it and update their .env file accordingly.
 CREATE USER IF NOT EXISTS 'subtrack_app'@'localhost'
 IDENTIFIED BY 'CannotGuessThis';

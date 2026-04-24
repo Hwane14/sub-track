@@ -1,6 +1,7 @@
 const cron = require("node-cron");
 const subscriptionModel = require("../models/subscription_model");
 
+// Cron job that auto-advances renewal dates daily
 function startRenewalCron() {
     cron.schedule("0 0 * * *", async () => {
         try {
